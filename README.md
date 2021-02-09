@@ -1,1 +1,1 @@
-# Salemoche-Wordpress-Essentials
+# salemoche-wordpress-essentials

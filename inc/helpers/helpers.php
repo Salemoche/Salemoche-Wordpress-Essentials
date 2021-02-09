@@ -54,4 +54,20 @@ function salemoche_get_block($block_name) {
 
     return false;
 }
+
+function salemoche_kses_wysiwyg( $string ) {
+    return wp_kses( $string , [
+        'p' => [],
+        'a' => [
+            'href' => [],
+            'download' => []
+        ],
+        'h2' => [],
+        'h3' => [],
+        'h4' => [],
+        'ul' => [],
+        'ol' => [],
+        'li' => [],
+    ] )
+}
 ?>
