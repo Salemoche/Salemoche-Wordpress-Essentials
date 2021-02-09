@@ -68,6 +68,6 @@ function salemoche_kses_wysiwyg( $string ) {
         'ul' => [],
         'ol' => [],
         'li' => [],
-    ] )
+    ] );
 }
 ?>
