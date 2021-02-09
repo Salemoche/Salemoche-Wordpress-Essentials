@@ -1,0 +1,1001 @@
+/**
+ * ========================================
+ * 
+ * Main styles
+ * 
+ * ========================================
+ */
+/** =============================================
+*
+*   Typography styles
+*
+============================================= */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/**
+*========================================
+*	
+*	The Salemoche Grid
+*
+*   Version 1.0
+*
+*   Developed by Gabriel Bach
+*
+*
+*========================================
+*   
+*   Modifiers:
+*       
+// *   Row
+// 
+// *       .justify-center:    justifies flexbox to the center
+*       
+*   Block
+*       .full:              makes block full width
+*       .justify-start:     justifies flexbox to the start
+*       .no-wrap:           disallows flexbox wrap
+*       
+*   Column
+*       .grow:              allows column to grow to fill content
+*       .no-gutter:         removes the margi on the siden
+*/
+/**
+*========================================
+*	
+*	Set Grid Variables
+*	
+*========================================
+*/
+/* SM: save values in a function so that we can calculate the values for each breakpoint */
+/* SM: make props.. variables that default to the default in sm-grid (change later) */
+/* SM-TODO change instances of $column-width */
+/**
+*========================================
+*	
+*	Calculate Column Width and Row Height Mixin
+*	
+*========================================
+*/
+/**
+*========================================
+*	
+*	Initiate Salemoche Grid
+*	
+*========================================
+*/
+.sm-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto; }
+  .sm-row[class*="-no-wrap"], .sm-row.no-wrap {
+    flex-wrap: nowrap; }
+  .sm-row[class*="-justify-center"], .sm-row.justify-center {
+    justify-content: center; }
+
+/* SM-TODO: Check how to display gutenberg default blocks in the correct content size  */
+.wp-block {
+  max-width: unset; }
+
+/* Style Debug Grid */
+.sm-grid {
+  display: none;
+  display: inherit;
+  z-index: 10000;
+  position: fixed;
+  height: 100vh; }
+  .sm-grid .sm-block .sm-col, .sm-grid .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, .sm-grid div.wp-block-group > .wp-block-group__inner-container .sm-col {
+    border: 1px solid #ff0000;
+    background: #ff000022;
+    height: 100vh; }
+
+/* Initiate Block */
+.sm-block, .sm-block > .wp-block-group__inner-container, .is-root-container > div.wp-block > .wp-block-group__inner-container, div.wp-block-group > .wp-block-group__inner-container, .is-root-container > div.wp-block, div.wp-block-group {
+  /* SM-TODO: Check if justify-content: space-between and flex-grow 1 wouldn't be better as a standard */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  /* Gutenberg Block Group Inner Container */
+  /* Initiate Columns */ }
+  @media screen and (min-width: 1240px) {
+    .sm-block, .sm-block > .wp-block-group__inner-container, .is-root-container > div.wp-block > .wp-block-group__inner-container, div.wp-block-group > .wp-block-group__inner-container, .is-root-container > div.wp-block, div.wp-block-group {
+      max-width: 1240px; } }
+  @media screen and (max-width: 1240px) {
+    .sm-block, .sm-block > .wp-block-group__inner-container, .is-root-container > div.wp-block > .wp-block-group__inner-container, div.wp-block-group > .wp-block-group__inner-container, .is-root-container > div.wp-block, div.wp-block-group {
+      max-width: 100%; } }
+  .sm-block.full, .sm-block > .full.wp-block-group__inner-container, .is-root-container > div.wp-block > .full.wp-block-group__inner-container, div.wp-block-group > .full.wp-block-group__inner-container, .sm-block[data-align="full"], .sm-block > .wp-block-group__inner-container[data-align="full"], .is-root-container > div.wp-block > .wp-block-group__inner-container[data-align="full"], div.wp-block-group > .wp-block-group__inner-container[data-align="full"], .sm-block.alignfull, .sm-block.full > .wp-block-group, .sm-block > .full.wp-block-group__inner-container > .wp-block-group, .is-root-container > div.wp-block > .full.wp-block-group__inner-container > .wp-block-group, div.wp-block-group > .full.wp-block-group__inner-container > .wp-block-group, .sm-block[data-align="full"] > .wp-block-group, .sm-block > .wp-block-group__inner-container[data-align="full"] > .wp-block-group, .is-root-container > div.wp-block > .wp-block-group__inner-container[data-align="full"] > .wp-block-group, div.wp-block-group > .wp-block-group__inner-container[data-align="full"] > .wp-block-group, .sm-block.alignfull > .wp-block-group, .sm-block > .alignfull.wp-block-group__inner-container > .wp-block-group, .is-root-container > div.wp-block > .alignfull.wp-block-group__inner-container > .wp-block-group, div.wp-block-group > .alignfull.wp-block-group__inner-container > .wp-block-group, .is-root-container > div.wp-block.full > .wp-block-group, .is-root-container > div.wp-block[data-align="full"] > .wp-block-group, .is-root-container > div.wp-block.alignfull > .wp-block-group, div.wp-block-group.full > .wp-block-group, div.wp-block-group[data-align="full"] > .wp-block-group, div.wp-block-group.alignfull > .wp-block-group, .sm-block > .alignfull.wp-block-group__inner-container, .is-root-container > div.wp-block > .alignfull.wp-block-group__inner-container, div.wp-block-group > .alignfull.wp-block-group__inner-container, .is-root-container > div.wp-block.full, .is-root-container > div.wp-block[data-align="full"], .is-root-container > div.wp-block.alignfull, div.wp-block-group.full, div.wp-block-group[data-align="full"], div.wp-block-group.alignfull {
+    width: 100%;
+    max-width: unset;
+    margin-left: 0 !important;
+    margin-right: 0 !important; }
+  .sm-block.wide, .sm-block > .wide.wp-block-group__inner-container, .is-root-container > div.wp-block > .wide.wp-block-group__inner-container, div.wp-block-group > .wide.wp-block-group__inner-container, .sm-block[data-align="wide"], .sm-block > .wp-block-group__inner-container[data-align="wide"], .is-root-container > div.wp-block > .wp-block-group__inner-container[data-align="wide"], div.wp-block-group > .wp-block-group__inner-container[data-align="wide"], .sm-block.alignwide, .sm-block > .alignwide.wp-block-group__inner-container, .is-root-container > div.wp-block > .alignwide.wp-block-group__inner-container, div.wp-block-group > .alignwide.wp-block-group__inner-container, .is-root-container > div.wp-block.wide, .is-root-container > div.wp-block[data-align="wide"], .is-root-container > div.wp-block.alignwide, div.wp-block-group.wide, div.wp-block-group[data-align="wide"], div.wp-block-group.alignwide {
+    width: 1240px; }
+  .sm-block.wp-block-group, .sm-block > .wp-block-group.wp-block-group__inner-container, .is-root-container > div.wp-block > .wp-block-group.wp-block-group__inner-container, div.wp-block-group > .wp-block-group.wp-block-group__inner-container, .is-root-container > div.wp-block.wp-block-group, div.wp-block-group.wp-block-group {
+    width: 100%;
+    max-width: 100vw; }
+    .sm-block.wp-block-group .wp-block-group__inner-container, .sm-block > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, .is-root-container > div.wp-block > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, div.wp-block-group > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, .is-root-container > div.wp-block.wp-block-group .wp-block-group__inner-container, div.wp-block-group.wp-block-group .wp-block-group__inner-container {
+      width: 100%; }
+      @media screen and (min-width: 1240px) {
+        .sm-block.wp-block-group .wp-block-group__inner-container, .sm-block > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, .is-root-container > div.wp-block > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, div.wp-block-group > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, .is-root-container > div.wp-block.wp-block-group .wp-block-group__inner-container, div.wp-block-group.wp-block-group .wp-block-group__inner-container {
+          max-width: 1240px; } }
+      @media screen and (max-width: 1240px) {
+        .sm-block.wp-block-group .wp-block-group__inner-container, .sm-block > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, .is-root-container > div.wp-block > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, div.wp-block-group > .wp-block-group.wp-block-group__inner-container .wp-block-group__inner-container, .is-root-container > div.wp-block.wp-block-group .wp-block-group__inner-container, div.wp-block-group.wp-block-group .wp-block-group__inner-container {
+          max-width: 100%; } }
+  .sm-block.justify-start, .sm-block > .justify-start.wp-block-group__inner-container, .is-root-container > div.wp-block > .justify-start.wp-block-group__inner-container, div.wp-block-group > .justify-start.wp-block-group__inner-container, .is-root-container > div.wp-block.justify-start, div.wp-block-group.justify-start {
+    justify-content: start; }
+  .sm-block.no-wrap, .sm-block > .no-wrap.wp-block-group__inner-container, .is-root-container > div.wp-block > .no-wrap.wp-block-group__inner-container, div.wp-block-group > .no-wrap.wp-block-group__inner-container, .is-root-container > div.wp-block.no-wrap, div.wp-block-group.no-wrap {
+    flex-wrap: nowrap; }
+  .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+    /* SM-TODO: SM: Check why this shit always returns true */
+    width: calc((100% / 12) * 6);
+    /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+    padding-left: calc( 8px / 2);
+    padding-right: calc( 8px / 2);
+    display: inline-block;
+    flex-grow: 0;
+    /* SM: Loop through each breakpoint in sm-grid */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: Take first Map as a large screen breakpoint */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: Take first Map as a large screen breakpoint */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: Take first Map as a large screen breakpoint */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: Take first Map as a large screen breakpoint */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: Take first Map as a large screen breakpoint */
+    /* SM: If it's a map use the name as a breakpoint and loop through its values */
+    /* SM: Take first Map as a large screen breakpoint */ }
+    .sm-block .sm-col else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col else, div.wp-block-group > .wp-block-group__inner-container .sm-col else, .is-root-container > div.wp-block .sm-col else, div.wp-block-group .sm-col else {
+      width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+    @media screen and (max-width: 1800px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-huge-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-1, .is-root-container > div.wp-block .sm-col.sm-huge-1, div.wp-block-group .sm-col.sm-huge-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-1 else, .is-root-container > div.wp-block .sm-col.sm-huge-1 else, div.wp-block-group .sm-col.sm-huge-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-2, .is-root-container > div.wp-block .sm-col.sm-huge-2, div.wp-block-group .sm-col.sm-huge-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-2 else, .is-root-container > div.wp-block .sm-col.sm-huge-2 else, div.wp-block-group .sm-col.sm-huge-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-3, .is-root-container > div.wp-block .sm-col.sm-huge-3, div.wp-block-group .sm-col.sm-huge-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-3 else, .is-root-container > div.wp-block .sm-col.sm-huge-3 else, div.wp-block-group .sm-col.sm-huge-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-4, .is-root-container > div.wp-block .sm-col.sm-huge-4, div.wp-block-group .sm-col.sm-huge-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-4 else, .is-root-container > div.wp-block .sm-col.sm-huge-4 else, div.wp-block-group .sm-col.sm-huge-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-5, .is-root-container > div.wp-block .sm-col.sm-huge-5, div.wp-block-group .sm-col.sm-huge-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-5 else, .is-root-container > div.wp-block .sm-col.sm-huge-5 else, div.wp-block-group .sm-col.sm-huge-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-6, .is-root-container > div.wp-block .sm-col.sm-huge-6, div.wp-block-group .sm-col.sm-huge-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-6 else, .is-root-container > div.wp-block .sm-col.sm-huge-6 else, div.wp-block-group .sm-col.sm-huge-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-7, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-7, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-7, .is-root-container > div.wp-block .sm-col.sm-huge-7, div.wp-block-group .sm-col.sm-huge-7 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 7);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-7 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-7 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-7 else, .is-root-container > div.wp-block .sm-col.sm-huge-7 else, div.wp-block-group .sm-col.sm-huge-7 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-8, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-8, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-8, .is-root-container > div.wp-block .sm-col.sm-huge-8, div.wp-block-group .sm-col.sm-huge-8 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 8);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-8 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-8 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-8 else, .is-root-container > div.wp-block .sm-col.sm-huge-8 else, div.wp-block-group .sm-col.sm-huge-8 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-9, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-9, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-9, .is-root-container > div.wp-block .sm-col.sm-huge-9, div.wp-block-group .sm-col.sm-huge-9 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 9);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-9 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-9 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-9 else, .is-root-container > div.wp-block .sm-col.sm-huge-9 else, div.wp-block-group .sm-col.sm-huge-9 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-10, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-10, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-10, .is-root-container > div.wp-block .sm-col.sm-huge-10, div.wp-block-group .sm-col.sm-huge-10 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 10);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-10 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-10 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-10 else, .is-root-container > div.wp-block .sm-col.sm-huge-10 else, div.wp-block-group .sm-col.sm-huge-10 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-11, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-11, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-11, .is-root-container > div.wp-block .sm-col.sm-huge-11, div.wp-block-group .sm-col.sm-huge-11 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 11);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-11 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-11 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-11 else, .is-root-container > div.wp-block .sm-col.sm-huge-11 else, div.wp-block-group .sm-col.sm-huge-11 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-huge-12, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-12, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-12, .is-root-container > div.wp-block .sm-col.sm-huge-12, div.wp-block-group .sm-col.sm-huge-12 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 12);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-huge-12 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-huge-12 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-huge-12 else, .is-root-container > div.wp-block .sm-col.sm-huge-12 else, div.wp-block-group .sm-col.sm-huge-12 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    @media screen and (min-width: 1800px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-col.sm-huge-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-1, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-1, div.wp-block-group .sm-col.sm-col.sm-huge-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-1 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-1 else, div.wp-block-group .sm-col.sm-col.sm-huge-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-2, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-2, div.wp-block-group .sm-col.sm-col.sm-huge-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-2 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-2 else, div.wp-block-group .sm-col.sm-col.sm-huge-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-3, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-3, div.wp-block-group .sm-col.sm-col.sm-huge-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-3 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-3 else, div.wp-block-group .sm-col.sm-col.sm-huge-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-4, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-4, div.wp-block-group .sm-col.sm-col.sm-huge-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-4 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-4 else, div.wp-block-group .sm-col.sm-col.sm-huge-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-5, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-5, div.wp-block-group .sm-col.sm-col.sm-huge-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-5 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-5 else, div.wp-block-group .sm-col.sm-col.sm-huge-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-6, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-6, div.wp-block-group .sm-col.sm-col.sm-huge-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-6 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-6 else, div.wp-block-group .sm-col.sm-col.sm-huge-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-7, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-7, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-7, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-7, div.wp-block-group .sm-col.sm-col.sm-huge-7 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 7);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-7 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-7 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-7 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-7 else, div.wp-block-group .sm-col.sm-col.sm-huge-7 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-8, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-8, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-8, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-8, div.wp-block-group .sm-col.sm-col.sm-huge-8 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 8);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-8 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-8 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-8 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-8 else, div.wp-block-group .sm-col.sm-col.sm-huge-8 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-9, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-9, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-9, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-9, div.wp-block-group .sm-col.sm-col.sm-huge-9 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 9);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-9 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-9 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-9 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-9 else, div.wp-block-group .sm-col.sm-col.sm-huge-9 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-10, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-10, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-10, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-10, div.wp-block-group .sm-col.sm-col.sm-huge-10 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 10);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-10 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-10 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-10 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-10 else, div.wp-block-group .sm-col.sm-col.sm-huge-10 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-11, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-11, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-11, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-11, div.wp-block-group .sm-col.sm-col.sm-huge-11 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 11);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-11 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-11 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-11 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-11 else, div.wp-block-group .sm-col.sm-col.sm-huge-11 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-huge-12, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-12, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-12, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-12, div.wp-block-group .sm-col.sm-col.sm-huge-12 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 12);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-huge-12 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-12 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-huge-12 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-huge-12 else, div.wp-block-group .sm-col.sm-col.sm-huge-12 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    @media screen and (max-width: 1400px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-xlarge-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-1, .is-root-container > div.wp-block .sm-col.sm-xlarge-1, div.wp-block-group .sm-col.sm-xlarge-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-1 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-1 else, div.wp-block-group .sm-col.sm-xlarge-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-2, .is-root-container > div.wp-block .sm-col.sm-xlarge-2, div.wp-block-group .sm-col.sm-xlarge-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-2 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-2 else, div.wp-block-group .sm-col.sm-xlarge-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-3, .is-root-container > div.wp-block .sm-col.sm-xlarge-3, div.wp-block-group .sm-col.sm-xlarge-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-3 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-3 else, div.wp-block-group .sm-col.sm-xlarge-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-4, .is-root-container > div.wp-block .sm-col.sm-xlarge-4, div.wp-block-group .sm-col.sm-xlarge-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-4 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-4 else, div.wp-block-group .sm-col.sm-xlarge-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-5, .is-root-container > div.wp-block .sm-col.sm-xlarge-5, div.wp-block-group .sm-col.sm-xlarge-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-5 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-5 else, div.wp-block-group .sm-col.sm-xlarge-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-6, .is-root-container > div.wp-block .sm-col.sm-xlarge-6, div.wp-block-group .sm-col.sm-xlarge-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-6 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-6 else, div.wp-block-group .sm-col.sm-xlarge-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-7, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-7, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-7, .is-root-container > div.wp-block .sm-col.sm-xlarge-7, div.wp-block-group .sm-col.sm-xlarge-7 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 7);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-7 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-7 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-7 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-7 else, div.wp-block-group .sm-col.sm-xlarge-7 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-8, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-8, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-8, .is-root-container > div.wp-block .sm-col.sm-xlarge-8, div.wp-block-group .sm-col.sm-xlarge-8 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 8);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-8 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-8 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-8 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-8 else, div.wp-block-group .sm-col.sm-xlarge-8 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-9, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-9, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-9, .is-root-container > div.wp-block .sm-col.sm-xlarge-9, div.wp-block-group .sm-col.sm-xlarge-9 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 9);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-9 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-9 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-9 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-9 else, div.wp-block-group .sm-col.sm-xlarge-9 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-10, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-10, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-10, .is-root-container > div.wp-block .sm-col.sm-xlarge-10, div.wp-block-group .sm-col.sm-xlarge-10 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 10);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-10 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-10 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-10 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-10 else, div.wp-block-group .sm-col.sm-xlarge-10 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-11, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-11, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-11, .is-root-container > div.wp-block .sm-col.sm-xlarge-11, div.wp-block-group .sm-col.sm-xlarge-11 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 11);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-11 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-11 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-11 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-11 else, div.wp-block-group .sm-col.sm-xlarge-11 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xlarge-12, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-12, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-12, .is-root-container > div.wp-block .sm-col.sm-xlarge-12, div.wp-block-group .sm-col.sm-xlarge-12 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 12);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xlarge-12 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xlarge-12 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xlarge-12 else, .is-root-container > div.wp-block .sm-col.sm-xlarge-12 else, div.wp-block-group .sm-col.sm-xlarge-12 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    @media screen and (max-width: 1024px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-large-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-1, .is-root-container > div.wp-block .sm-col.sm-large-1, div.wp-block-group .sm-col.sm-large-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-1 else, .is-root-container > div.wp-block .sm-col.sm-large-1 else, div.wp-block-group .sm-col.sm-large-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-2, .is-root-container > div.wp-block .sm-col.sm-large-2, div.wp-block-group .sm-col.sm-large-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-2 else, .is-root-container > div.wp-block .sm-col.sm-large-2 else, div.wp-block-group .sm-col.sm-large-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-3, .is-root-container > div.wp-block .sm-col.sm-large-3, div.wp-block-group .sm-col.sm-large-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-3 else, .is-root-container > div.wp-block .sm-col.sm-large-3 else, div.wp-block-group .sm-col.sm-large-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-4, .is-root-container > div.wp-block .sm-col.sm-large-4, div.wp-block-group .sm-col.sm-large-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-4 else, .is-root-container > div.wp-block .sm-col.sm-large-4 else, div.wp-block-group .sm-col.sm-large-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-5, .is-root-container > div.wp-block .sm-col.sm-large-5, div.wp-block-group .sm-col.sm-large-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-5 else, .is-root-container > div.wp-block .sm-col.sm-large-5 else, div.wp-block-group .sm-col.sm-large-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-6, .is-root-container > div.wp-block .sm-col.sm-large-6, div.wp-block-group .sm-col.sm-large-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-6 else, .is-root-container > div.wp-block .sm-col.sm-large-6 else, div.wp-block-group .sm-col.sm-large-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-7, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-7, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-7, .is-root-container > div.wp-block .sm-col.sm-large-7, div.wp-block-group .sm-col.sm-large-7 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 7);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-7 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-7 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-7 else, .is-root-container > div.wp-block .sm-col.sm-large-7 else, div.wp-block-group .sm-col.sm-large-7 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-8, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-8, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-8, .is-root-container > div.wp-block .sm-col.sm-large-8, div.wp-block-group .sm-col.sm-large-8 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 8);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-8 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-8 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-8 else, .is-root-container > div.wp-block .sm-col.sm-large-8 else, div.wp-block-group .sm-col.sm-large-8 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-9, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-9, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-9, .is-root-container > div.wp-block .sm-col.sm-large-9, div.wp-block-group .sm-col.sm-large-9 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 9);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-9 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-9 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-9 else, .is-root-container > div.wp-block .sm-col.sm-large-9 else, div.wp-block-group .sm-col.sm-large-9 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-10, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-10, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-10, .is-root-container > div.wp-block .sm-col.sm-large-10, div.wp-block-group .sm-col.sm-large-10 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 10);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-10 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-10 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-10 else, .is-root-container > div.wp-block .sm-col.sm-large-10 else, div.wp-block-group .sm-col.sm-large-10 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-11, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-11, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-11, .is-root-container > div.wp-block .sm-col.sm-large-11, div.wp-block-group .sm-col.sm-large-11 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 11);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-11 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-11 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-11 else, .is-root-container > div.wp-block .sm-col.sm-large-11 else, div.wp-block-group .sm-col.sm-large-11 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-large-12, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-12, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-12, .is-root-container > div.wp-block .sm-col.sm-large-12, div.wp-block-group .sm-col.sm-large-12 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 12);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-large-12 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-large-12 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-large-12 else, .is-root-container > div.wp-block .sm-col.sm-large-12 else, div.wp-block-group .sm-col.sm-large-12 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    @media screen and (min-width: 1024px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-col.sm-large-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-1, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-1, div.wp-block-group .sm-col.sm-col.sm-large-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-1 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-1 else, div.wp-block-group .sm-col.sm-col.sm-large-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-2, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-2, div.wp-block-group .sm-col.sm-col.sm-large-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-2 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-2 else, div.wp-block-group .sm-col.sm-col.sm-large-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-3, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-3, div.wp-block-group .sm-col.sm-col.sm-large-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-3 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-3 else, div.wp-block-group .sm-col.sm-col.sm-large-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-4, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-4, div.wp-block-group .sm-col.sm-col.sm-large-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-4 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-4 else, div.wp-block-group .sm-col.sm-col.sm-large-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-5, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-5, div.wp-block-group .sm-col.sm-col.sm-large-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-5 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-5 else, div.wp-block-group .sm-col.sm-col.sm-large-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-6, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-6, div.wp-block-group .sm-col.sm-col.sm-large-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-6 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-6 else, div.wp-block-group .sm-col.sm-col.sm-large-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-7, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-7, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-7, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-7, div.wp-block-group .sm-col.sm-col.sm-large-7 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 7);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-7 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-7 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-7 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-7 else, div.wp-block-group .sm-col.sm-col.sm-large-7 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-8, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-8, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-8, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-8, div.wp-block-group .sm-col.sm-col.sm-large-8 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 8);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-8 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-8 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-8 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-8 else, div.wp-block-group .sm-col.sm-col.sm-large-8 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-9, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-9, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-9, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-9, div.wp-block-group .sm-col.sm-col.sm-large-9 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 9);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-9 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-9 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-9 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-9 else, div.wp-block-group .sm-col.sm-col.sm-large-9 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-10, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-10, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-10, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-10, div.wp-block-group .sm-col.sm-col.sm-large-10 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 10);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-10 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-10 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-10 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-10 else, div.wp-block-group .sm-col.sm-col.sm-large-10 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-11, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-11, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-11, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-11, div.wp-block-group .sm-col.sm-col.sm-large-11 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 11);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-11 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-11 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-11 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-11 else, div.wp-block-group .sm-col.sm-col.sm-large-11 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-col.sm-large-12, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-12, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-12, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-12, div.wp-block-group .sm-col.sm-col.sm-large-12 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 12) * 12);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-col.sm-large-12 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-col.sm-large-12 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-col.sm-large-12 else, .is-root-container > div.wp-block .sm-col.sm-col.sm-large-12 else, div.wp-block-group .sm-col.sm-col.sm-large-12 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    @media screen and (max-width: 768px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-medium-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-1, .is-root-container > div.wp-block .sm-col.sm-medium-1, div.wp-block-group .sm-col.sm-medium-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-medium-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-1 else, .is-root-container > div.wp-block .sm-col.sm-medium-1 else, div.wp-block-group .sm-col.sm-medium-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-medium-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-2, .is-root-container > div.wp-block .sm-col.sm-medium-2, div.wp-block-group .sm-col.sm-medium-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-medium-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-2 else, .is-root-container > div.wp-block .sm-col.sm-medium-2 else, div.wp-block-group .sm-col.sm-medium-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-medium-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-3, .is-root-container > div.wp-block .sm-col.sm-medium-3, div.wp-block-group .sm-col.sm-medium-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-medium-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-3 else, .is-root-container > div.wp-block .sm-col.sm-medium-3 else, div.wp-block-group .sm-col.sm-medium-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-medium-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-4, .is-root-container > div.wp-block .sm-col.sm-medium-4, div.wp-block-group .sm-col.sm-medium-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-medium-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-4 else, .is-root-container > div.wp-block .sm-col.sm-medium-4 else, div.wp-block-group .sm-col.sm-medium-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-medium-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-5, .is-root-container > div.wp-block .sm-col.sm-medium-5, div.wp-block-group .sm-col.sm-medium-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-medium-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-5 else, .is-root-container > div.wp-block .sm-col.sm-medium-5 else, div.wp-block-group .sm-col.sm-medium-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-medium-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-6, .is-root-container > div.wp-block .sm-col.sm-medium-6, div.wp-block-group .sm-col.sm-medium-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-medium-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-medium-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-medium-6 else, .is-root-container > div.wp-block .sm-col.sm-medium-6 else, div.wp-block-group .sm-col.sm-medium-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    @media screen and (max-width: 420px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-small-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-1, .is-root-container > div.wp-block .sm-col.sm-small-1, div.wp-block-group .sm-col.sm-small-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-small-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-1 else, .is-root-container > div.wp-block .sm-col.sm-small-1 else, div.wp-block-group .sm-col.sm-small-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-small-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-2, .is-root-container > div.wp-block .sm-col.sm-small-2, div.wp-block-group .sm-col.sm-small-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-small-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-2 else, .is-root-container > div.wp-block .sm-col.sm-small-2 else, div.wp-block-group .sm-col.sm-small-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-small-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-3, .is-root-container > div.wp-block .sm-col.sm-small-3, div.wp-block-group .sm-col.sm-small-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-small-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-3 else, .is-root-container > div.wp-block .sm-col.sm-small-3 else, div.wp-block-group .sm-col.sm-small-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-small-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-4, .is-root-container > div.wp-block .sm-col.sm-small-4, div.wp-block-group .sm-col.sm-small-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-small-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-4 else, .is-root-container > div.wp-block .sm-col.sm-small-4 else, div.wp-block-group .sm-col.sm-small-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-small-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-5, .is-root-container > div.wp-block .sm-col.sm-small-5, div.wp-block-group .sm-col.sm-small-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-small-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-5 else, .is-root-container > div.wp-block .sm-col.sm-small-5 else, div.wp-block-group .sm-col.sm-small-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-small-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-6, .is-root-container > div.wp-block .sm-col.sm-small-6, div.wp-block-group .sm-col.sm-small-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-small-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-small-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-small-6 else, .is-root-container > div.wp-block .sm-col.sm-small-6 else, div.wp-block-group .sm-col.sm-small-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    @media screen and (max-width: 320px) {
+      .sm-block .sm-col, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col, div.wp-block-group > .wp-block-group__inner-container .sm-col, .is-root-container > div.wp-block .sm-col, div.wp-block-group .sm-col {
+        /* SM: Loop through each column depending on the class number and add styling to it*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/ }
+        .sm-block .sm-col.sm-xsmall-1, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-1, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-1, .is-root-container > div.wp-block .sm-col.sm-xsmall-1, div.wp-block-group .sm-col.sm-xsmall-1 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 1);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xsmall-1 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-1 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-1 else, .is-root-container > div.wp-block .sm-col.sm-xsmall-1 else, div.wp-block-group .sm-col.sm-xsmall-1 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xsmall-2, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-2, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-2, .is-root-container > div.wp-block .sm-col.sm-xsmall-2, div.wp-block-group .sm-col.sm-xsmall-2 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 2);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xsmall-2 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-2 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-2 else, .is-root-container > div.wp-block .sm-col.sm-xsmall-2 else, div.wp-block-group .sm-col.sm-xsmall-2 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xsmall-3, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-3, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-3, .is-root-container > div.wp-block .sm-col.sm-xsmall-3, div.wp-block-group .sm-col.sm-xsmall-3 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 3);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xsmall-3 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-3 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-3 else, .is-root-container > div.wp-block .sm-col.sm-xsmall-3 else, div.wp-block-group .sm-col.sm-xsmall-3 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xsmall-4, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-4, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-4, .is-root-container > div.wp-block .sm-col.sm-xsmall-4, div.wp-block-group .sm-col.sm-xsmall-4 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 4);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xsmall-4 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-4 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-4 else, .is-root-container > div.wp-block .sm-col.sm-xsmall-4 else, div.wp-block-group .sm-col.sm-xsmall-4 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xsmall-5, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-5, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-5, .is-root-container > div.wp-block .sm-col.sm-xsmall-5, div.wp-block-group .sm-col.sm-xsmall-5 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 5);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xsmall-5 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-5 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-5 else, .is-root-container > div.wp-block .sm-col.sm-xsmall-5 else, div.wp-block-group .sm-col.sm-xsmall-5 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); }
+        .sm-block .sm-col.sm-xsmall-6, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-6, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-6, .is-root-container > div.wp-block .sm-col.sm-xsmall-6, div.wp-block-group .sm-col.sm-xsmall-6 {
+          /* SM: Call the mixin which in turn uses the value to call the call the function */
+          /* SM-TODO: SM: Check why this shit always returns true */
+          width: calc((100% / 6) * 6);
+          /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+          padding-left: calc( 8px / 2);
+          padding-right: calc( 8px / 2); }
+          .sm-block .sm-col.sm-xsmall-6 else, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.sm-xsmall-6 else, div.wp-block-group > .wp-block-group__inner-container .sm-col.sm-xsmall-6 else, .is-root-container > div.wp-block .sm-col.sm-xsmall-6 else, div.wp-block-group .sm-col.sm-xsmall-6 else {
+            width: calc( (calc( (100% - ((12 - 1) * 8px) + (8px * 2) ) / 12) + 8px)); } }
+    .sm-block .sm-col[class*="-grow"], .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col[class*="-grow"], div.wp-block-group > .wp-block-group__inner-container .sm-col[class*="-grow"], .sm-block .sm-col.grow, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.grow, div.wp-block-group > .wp-block-group__inner-container .sm-col.grow, .is-root-container > div.wp-block .sm-col[class*="-grow"], .is-root-container > div.wp-block .sm-col.grow, div.wp-block-group .sm-col[class*="-grow"], div.wp-block-group .sm-col.grow {
+      flex-grow: 1; }
+    .sm-block .sm-col[class*="-no_gutter"], .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col[class*="-no_gutter"], div.wp-block-group > .wp-block-group__inner-container .sm-col[class*="-no_gutter"], .sm-block .sm-col.no_gutter, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.no_gutter, div.wp-block-group > .wp-block-group__inner-container .sm-col.no_gutter, .is-root-container > div.wp-block .sm-col[class*="-no_gutter"], .is-root-container > div.wp-block .sm-col.no_gutter, div.wp-block-group .sm-col[class*="-no_gutter"], div.wp-block-group .sm-col.no_gutter {
+      margin-left: 0;
+      margin-right: 0; }
+
+/* Make necessary blocks full width */
+.block-editor-block-list__layout {
+  width: 100%; }
+
+/** =============================================
+*
+*   Atoms styles
+*
+============================================= */
+/**
+*========================================
+*	
+*	Molecules
+*	
+*========================================
+*/
+.sm-debug {
+  position: fixed;
+  height: 90vh;
+  width: 100vw;
+  max-width: 600px;
+  overflow: scroll;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ddd;
+  z-index: 100000;
+  padding: 20px; }
+
+
+/*# sourceMappingURL=main.css.map*/

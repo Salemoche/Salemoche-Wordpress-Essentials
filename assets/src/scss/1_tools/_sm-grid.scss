@@ -1,0 +1,375 @@
+/**
+*========================================
+*	
+*	The Salemoche Grid
+*
+*   Version 1.0
+*
+*   Developed by Gabriel Bach
+*
+*
+*========================================
+*   
+*   Modifiers:
+*       
+// *   Row
+// 
+// *       .justify-center:    justifies flexbox to the center
+*       
+*   Block
+*       .full:              makes block full width
+*       .justify-start:     justifies flexbox to the start
+*       .no-wrap:           disallows flexbox wrap
+*       
+*   Column
+*       .grow:              allows column to grow to fill content
+*       .no-gutter:         removes the margi on the siden
+*/
+
+
+/**
+*========================================
+*	
+*	Set Grid Variables
+*	
+*========================================
+*/
+
+//SM: save values in a map so that we can use the key as a breakpoint
+
+$sm-grid: (
+    "content_width": $content_width,
+    "column_count": 12,
+    "column_gutter": 8px,
+    "column_side": 8px,
+    "row_height": 16px,
+    "huge": (
+        "breakpoint": 1800px,
+        "column_count": 12,
+        "column_gutter": 8px,
+        "column_side": 8px,
+        "row_height": 16px,
+    ),
+    "xlarge": (
+        "breakpoint": 1400px,
+        "column_count": 12,
+        "column_gutter": 8px,
+        "column_side": 8px,
+        "row_height": 16px,
+    ),
+    "large": (
+        "breakpoint": 1024px,
+        "column_count": 12,
+        "column_gutter": 8px,
+        "column_side": 8px,
+        "row_height": 16px,
+    ),
+    "medium": (
+        "breakpoint": 768px,
+        "column_count": 6,
+        "column_gutter": 8px,
+        "column_side": 8px,
+        "row_height": 16px,
+    ),
+    "small": (
+        "breakpoint": 420px,
+        "column_count": 6,
+        "column_gutter": 8px,
+        "column_side": 8px,
+        "row_height": 16px,
+    ),
+    "xsmall": (
+        "breakpoint": 320px,
+        "column_count": 6,
+        "column_gutter": 8px,
+        "column_side": 8px,
+        "row_height": 16px,
+    )
+) !default;
+
+/* SM: save values in a function so that we can calculate the values for each breakpoint */
+/* SM: make props.. variables that default to the default in sm-grid (change later) */
+/* SM-TODO change instances of $column-width */
+
+@function sm-calculate-column-width($column_count: #{map_get($sm-grid, "column_count")}, $column_gutter: #{map_get($sm-grid, "column_gutter")}, $column_side: #{map_get($sm-grid, "column_side")}, $breakpoint: "1024px") {
+    
+    $sm-column-width: calc( (100% - ((#{$column_count} - 1) * #{$column_gutter}) + (#{$column_side} * 2) ) / #{$column_count});
+    @return $sm-column-width;
+
+/* SM-TODO change function so that it goes to 100vw / 100% depending on the breakpoint */
+
+    @if #{$breakpoint} <= $content-width {
+        $sm-column-width: calc( (100vw - (((#{$column_count} - 1) * #{$column_gutter}) + (#{$column_side} * 2) )) / #{$column_count});
+        @return $sm-column-width;
+    } @else {
+        $sm-column-width: calc( (100% - (((#{$column_count} - 1) * #{$column_gutter}) + (#{$column_side} * 2) )) / #{$column_count});
+        @return $sm-column-width;
+    }
+
+}
+
+@function sm-calculate-padding-side($column_count: #{map_get($sm-grid, "column_count")}) {
+    $sm-padding-side: calc(100vw / (#{$column_count} + 2));
+    @return $sm-padding-side;
+}
+
+@function sm-calculate-padding-side--wide($column_count: #{map_get($sm-grid, "column_count")}, $content-width: $content-width) {
+    $sm-padding-side--wide: calc(#{$content-width} / (#{$column_count} + 2));
+    @return $sm-padding-side--wide;
+}
+
+@function sm-get-row-height($count: 1, $row_height: #{map_get($sm-grid, "row_height")}) {
+    @return calc( #{$row_height} * #{$count});
+}
+
+
+
+
+/**
+*========================================
+*	
+*	Calculate Column Width and Row Height Mixin
+*	
+*========================================
+*/
+
+@mixin sm-col($count, $gutter: "gutter", $breakpoint: 1024px, $column_count: #{map_get($sm-grid, "column_count")}, $column_gutter: #{map_get($sm-grid, "column_gutter")}, $column_side: #{map_get($sm-grid, "column_side")}) {
+
+    @if $gutter == "gutter" {
+
+        /* SM-TODO: SM: Check why this shit always returns true */
+
+        @if ($breakpoint >= map_get($sm-grid, "content_width")) {
+            // width: calc((#{map_get($sm-grid, "content_width")} / #{$column_count}) * #{$count});
+            width: calc((100% / #{$column_count}) * #{$count});
+        } @else {
+            // width: calc((100vw / #{$column_count}) * #{$count});
+            width: calc((100% / #{$column_count}) * #{$count});
+        }
+
+        /* SM-TODO: SM: Check if the ount doesn't surpass the column count */
+        // @if #{$count} <= #{$column_count} {
+        //     // width: calc( #{sm-calculate-column-width(#{$column_count}, #{$column_gutter}, #{$column_side}, #{$breakpoint})} * #{$count} + #{$column_gutter} * (#{$count} - 1) );
+        //     width: calc(100% / #{$count});
+        // } @else {
+        //     width: 100%;
+        //     background: pink;
+        // }
+        
+        // margin-left: calc( #{$column_gutter} / 2);
+        // margin-right: calc( #{$column_gutter} / 2);
+        
+        padding-left: calc( #{$column_gutter} / 2);
+        padding-right: calc( #{$column_gutter} / 2);
+    } else {
+        width: calc( (#{sm-calculate-column-width()} + #{$column_gutter}));
+    }
+}
+
+@mixin sm-row($count, $breakpoint: "1024") {
+    height: calc( #{map_get($sm-grid, "row_height")} * #{$count});
+}
+
+/**
+*========================================
+*	
+*	Initiate Salemoche Grid
+*	
+*========================================
+*/
+
+.sm-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    &[class*="-no-wrap"], &.no-wrap {
+        flex-wrap: nowrap;
+    }
+
+    &[class*="-justify-center"], &.justify-center {
+        justify-content: center;
+    }
+}
+
+
+/* SM-TODO: Check how to display gutenberg default blocks in the correct content size  */
+.wp-block {
+    max-width: unset;
+}
+// .is-root-container > div.wp-block, div.wp-block-group {
+//     display: flex;
+//     justify-content: center;
+//     flex-wrap: wrap;
+// }
+
+/* Style Debug Grid */
+.sm-grid {
+    display: none;
+    display: inherit;
+    z-index: 10000;
+    position: fixed;
+    height: 100vh;
+
+    .sm-block {
+        .sm-col {
+            border: 1px solid #ff0000;
+            background: #ff000022;
+            height: 100vh;
+        }
+    }
+}
+
+
+/* Initiate Block */
+.sm-block, .is-root-container > div.wp-block, div.wp-block-group {
+    /* SM-TODO: Check if justify-content: space-between and flex-grow 1 wouldn't be better as a standard */
+    @include content_width;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    &.full, &[data-align="full"], &.alignfull {
+        width: 100%;
+        max-width: unset;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        > .wp-block-group {
+            // width: 100%;
+            // max-width: unset;
+            // margin-left: 0 !important;
+            // margin-right: 0 !important;
+            @extend .sm-block.alignfull
+        }
+    }
+
+    &.wide, &[data-align="wide"], &.alignwide {
+        width: $content-width;
+    }
+
+    &.wp-block-group {
+        width: 100%;
+        max-width: 100vw;
+
+        .wp-block-group__inner-container {
+            @include content_width;
+        }
+    }
+
+    &.justify-start {
+        justify-content: start;
+    }
+
+    &.no-wrap {
+        flex-wrap: nowrap;
+    }
+
+    /* Gutenberg Block Group Inner Container */
+    > .wp-block-group__inner-container {
+        @extend .sm-block;
+    }
+
+    /* Initiate Columns */
+    .sm-col {
+        // background: green;
+        @include sm-col(6, "gutter");
+        display: inline-block;
+        flex-grow: 0;
+        
+
+        // @media screen and (min-width: map_get($sm-grid, "content-width")) {
+        //     &.sm-col.sm-#{$breakpoint_name}-#{$i} {
+        //         @include sm-col($i, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
+
+        //     }
+        // }
+
+        /* SM: Loop through each breakpoint in sm-grid */
+        @each $breakpoint_name, $variables in $sm-grid {
+
+            /* SM: If it's a map use the name as a breakpoint and loop through its values */
+            @if type-of($variables) == "map" {
+                @media screen and (max-width: #{map_get($variables, "breakpoint")}) {
+
+                    /* SM: Loop through each column depending on the class number and add styling to it*/
+                    @for $i from 1 through map_get($variables, "column_count") {
+
+                        /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+                        &.sm-#{$breakpoint_name}-#{$i} {
+                            /* SM: Call the mixin which in turn uses the value to call the call the function */
+                            @include sm-col($i, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
+                        }
+                    }
+                }
+                
+                /* SM: Take first Map as a large screen breakpoint */
+                @if $breakpoint_name == "large" or $breakpoint_name == "huge" {
+                    @media screen and (min-width: #{map_get($variables, "breakpoint")}) {
+
+                        /* SM: Loop through each column depending on the class number and add styling to it*/
+                        @for $j from 1 through map_get($variables, "column_count") {
+
+                            /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
+                            &.sm-col.sm-#{$breakpoint_name}-#{$j} {
+                                /* SM: Call the mixin which in turn uses the value to call the call the function */
+                                @include sm-col($j, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        &[class*="-grow"], &.grow {
+            flex-grow: 1;
+        }
+
+        &[class*="-no_gutter"], &.no_gutter {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}
+
+//=====================
+// Gutenberg Support
+//=====================
+
+// .editor-styles-wrapper .block-editor-block-list__layout.is-root-container>.wp-block[data-align=full] {
+//     margin-left: 0px;
+//     margin-right: 0px;
+// }
+
+
+/* Make necessary blocks full width */
+.block-editor-block-list__layout {
+    width: 100%;
+}
+
+// .is-root-container, .wp-the-content {
+// 	[data-align="wide"], [data-align="wide"] .wp-block, > * {
+// 		width: 100%;
+//         max-width: map_get( $sizes, "content-narrow" );
+//         margin: 0 auto;
+// 	}
+// }
+
+// .is-root-container, .wp-the-content {
+// 	[data-align="full"], [data-align="full"] .wp-block, .alignfull, .allignfull > * {
+// 		width: 100%;
+//         max-width: map_get( $sizes, "content-wide" );
+        
+//         @include mq($until: xlarge) {
+//             padding: 0 sm-calculate-padding-side();
+//         }
+
+//         @include mq($from: xlarge) {
+//             padding: 0 sm-calculate-padding-side--wide();
+//         }
+// 	}
+// }

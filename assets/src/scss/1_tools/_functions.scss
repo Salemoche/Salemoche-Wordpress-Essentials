@@ -1,0 +1,4 @@
+@function negative($value) {
+	$negative: calc(0px - #{$value});
+	@return $negative
+};

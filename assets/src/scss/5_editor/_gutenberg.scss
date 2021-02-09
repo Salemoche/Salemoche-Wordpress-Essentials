@@ -1,0 +1,21 @@
+/**
+*========================================
+*	
+*	Gutenberg Styles
+*	
+*========================================
+*/
+
+.wp-block {
+	border: 1px solid #D1D6E6 !important;
+    background: white;
+}
+
+.wp-block-group {
+    border: 1px solid #F6D6E1 !important;
+    background: #F6D6E122;
+}
+
+.block-list-appender, [data-type="core/group"].is-selected .block-list-appender {
+    margin: 0 auto;
+}
