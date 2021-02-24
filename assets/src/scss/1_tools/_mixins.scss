@@ -80,7 +80,7 @@
 //SM-TODO: check if we can use a map here
 
 @mixin hover( $property: 'transform', $value: 'scale(1.01)') {
-	transition: $transition;
+	transition: $transition-long;
 
 	&:hover {
 		#{$property}: #{$value};
