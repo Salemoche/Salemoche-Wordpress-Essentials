@@ -31,6 +31,7 @@ body {
 // *   Row
 // 
 // *       .justify-center:    justifies flexbox to the center
+        .full               removes padding
 *       
 *   Block
 *       .full:              makes block full width
@@ -70,6 +71,10 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto; }
+  .sm-row.full {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0; }
   .sm-row[class*="-no-wrap"], .sm-row.no-wrap {
     flex-wrap: nowrap; }
   .sm-row[class*="-justify-center"], .sm-row.justify-center {
@@ -966,7 +971,9 @@ body {
       flex-grow: 1; }
     .sm-block .sm-col[class*="-no_gutter"], .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col[class*="-no_gutter"], div.wp-block-group > .wp-block-group__inner-container .sm-col[class*="-no_gutter"], .sm-block .sm-col.no_gutter, .is-root-container > div.wp-block > .wp-block-group__inner-container .sm-col.no_gutter, div.wp-block-group > .wp-block-group__inner-container .sm-col.no_gutter, .is-root-container > div.wp-block .sm-col[class*="-no_gutter"], .is-root-container > div.wp-block .sm-col.no_gutter, div.wp-block-group .sm-col[class*="-no_gutter"], div.wp-block-group .sm-col.no_gutter {
       margin-left: 0;
-      margin-right: 0; }
+      margin-right: 0;
+      padding-left: 0 !important;
+      padding-right: 0 !important; }
 
 /* Make necessary blocks full width */
 .block-editor-block-list__layout {

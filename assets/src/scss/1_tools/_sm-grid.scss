@@ -15,6 +15,7 @@
 // *   Row
 // 
 // *       .justify-center:    justifies flexbox to the center
+        .full               removes padding
 *       
 *   Block
 *       .full:              makes block full width
@@ -133,7 +134,12 @@ $sm-grid: (
 *========================================
 */
 
-@mixin sm-col($count, $gutter: "gutter", $breakpoint: 1024px, $column_count: #{map_get($sm-grid, "column_count")}, $column_gutter: #{map_get($sm-grid, "column_gutter")}, $column_side: #{map_get($sm-grid, "column_side")}) {
+@mixin sm-times-column ($property: "", $count: 1) {
+
+    #{$property}: calc(#{sm-calculate-column-width()} * #{$count});
+}
+
+@mixin sm-column-width($count, $gutter: "gutter", $breakpoint: 1024px, $column_count: #{map_get($sm-grid, "column_count")}, $column_gutter: #{map_get($sm-grid, "column_gutter")}, $column_side: #{map_get($sm-grid, "column_side")}) {
 
     @if $gutter == "gutter" {
 
@@ -183,6 +189,12 @@ $sm-grid: (
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
+
+    &.full {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
 
     &[class*="-no-wrap"], &.no-wrap {
         flex-wrap: nowrap;
@@ -276,14 +288,14 @@ $sm-grid: (
     /* Initiate Columns */
     .sm-col {
         // background: green;
-        @include sm-col(6, "gutter");
+        @include sm-column-width(6, "gutter");
         display: inline-block;
         flex-grow: 0;
         
 
         // @media screen and (min-width: map_get($sm-grid, "content-width")) {
         //     &.sm-col.sm-#{$breakpoint_name}-#{$i} {
-        //         @include sm-col($i, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
+        //         @include sm-column-width($i, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
 
         //     }
         // }
@@ -301,7 +313,7 @@ $sm-grid: (
                         /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
                         &.sm-#{$breakpoint_name}-#{$i} {
                             /* SM: Call the mixin which in turn uses the value to call the call the function */
-                            @include sm-col($i, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
+                            @include sm-column-width($i, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
                         }
                     }
                 }
@@ -316,7 +328,7 @@ $sm-grid: (
                             /* SM: Style all sm-col columns to the right size if they have breakpoint in their name*/
                             &.sm-col.sm-#{$breakpoint_name}-#{$j} {
                                 /* SM: Call the mixin which in turn uses the value to call the call the function */
-                                @include sm-col($j, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
+                                @include sm-column-width($j, "gutter", $breakpoint: map_get($variables, "breakpoint"), $column_count: map_get($variables, "column_count"), $column_gutter: map_get($variables, "column_gutter"), $column_side: map_get($variables, "column_side") );
                             }
                         }
                     }
@@ -332,6 +344,8 @@ $sm-grid: (
         &[class*="-no_gutter"], &.no_gutter {
             margin-left: 0;
             margin-right: 0;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
         }
     }
 }
