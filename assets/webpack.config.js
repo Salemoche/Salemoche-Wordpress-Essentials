@@ -14,6 +14,7 @@ const BUILD_DIR = path.resolve( __dirname, 'build');
 const entry = {
     main: JS_DIR + '/main.js',
     filter: JS_DIR + '/filter.js',
+    slick: JS_DIR + '/slick.js',
 };
 
 const output = {
