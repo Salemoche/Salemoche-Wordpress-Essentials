@@ -12,13 +12,13 @@ class SalemocheUtilities {
 
     function __construct() {
 
-        add_action('wp_enqueue_scripts', [$this, 'add_assets']);
+        // add_action('wp_enqueue_scripts', [$this, 'add_assets']);
     }
 
     public function add_testimonial_post_type ( ) {
         
-        function wporg_custom_post_type() {
-            register_post_type('wporg_product',
+        function salemoche_custom_post_type() {
+            register_post_type('salemoche_product',
                 array(
                     'labels'      => array(
                         'name'          => __('Products', 'textdomain'),
@@ -29,6 +29,7 @@ class SalemocheUtilities {
                 )
             );
         }
-        add_action('init', 'wporg_custom_post_type');
+
+        add_action('init', 'salemoche_custom_post_type');
     }
 }
