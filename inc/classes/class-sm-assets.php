@@ -15,14 +15,14 @@ class SalemocheAssets {
 
     public function add_assets ( ) {
         
-        wp_register_script( 'main', SALEMOCHE_ESSENTIALS_JS_URL . '/main.js', [ 'jquery' ], false, false );
-        wp_enqueue_script( 'main' );
+        wp_register_script( 'sm-main-js', SALEMOCHE_ESSENTIALS_JS_URL . '/main.js', [ 'jquery' ], false, false );
+        wp_enqueue_script( 'sm-main-js' );
 
-        wp_register_style( 'slick-css', SALEMOCHE_ESSENTIALS_CSS_URL . '/slick.css', [], false, 'all' );
-        wp_enqueue_style('slick-css');
+        wp_register_style( 'sm-slick-css', SALEMOCHE_ESSENTIALS_CSS_URL . '/slick.css', [], false, 'all' );
+        wp_enqueue_style('sm-slick-css');
         
-        wp_register_script( 'slick-js', SALEMOCHE_ESSENTIALS_JS_URL . '/slick.js', [ 'jquery' ], false, true );
-        wp_enqueue_script('slick-js');
+        wp_register_script( 'sm-slick-js', SALEMOCHE_ESSENTIALS_JS_URL . '/slick.js', [ 'jquery' ], false, true );
+        wp_enqueue_script('sm-slick-js');
 
     }
 }
