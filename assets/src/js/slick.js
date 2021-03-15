@@ -6,7 +6,7 @@ import '../scss/slick.scss';
 
     $(document).on('ready', () => {
         
-        // $('.uxu-testimonial-slider').slick();
+        // $('.scientifica-testimonial-slider').slick();
 
     })
 

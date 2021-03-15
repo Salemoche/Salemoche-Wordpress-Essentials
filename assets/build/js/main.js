@@ -11,8 +11,8 @@
   $(document).on('ready', function () {
     /* Add class to display groups so they slide lower than the filter group */
     $('.wp-block-group').each(function () {
-      if ($(this).find('.uxu-story-display').length != 0) {
-        $(this).addClass('uxu-story-display-container');
+      if ($(this).find('.scientifica-story-display').length != 0) {
+        $(this).addClass('scientifica-story-display-container');
       }
     });
     var filter = {
@@ -20,7 +20,7 @@
       tags: [],
       all: []
     };
-    var filterObjects = '.uxu-tile';
+    var filterObjects = '.scientifica-tile';
     var filterCategories = ['categories', 'tags'];
     var filterInput = '.sm-filter-input';
     var filterType = 'has all';
@@ -61,7 +61,7 @@
 
       /* SM-TODO: Imporve UX with feedback */
 
-      var filteredObjects = $('.uxu-filter-container').find('.uxu-tile');
+      var filteredObjects = $('.scientifica-filter-container').find('.scientifica-tile');
 
       if (filteredObjects.length == 0) {
         $('select' + filterInput).val('select');
@@ -90,17 +90,17 @@
         if (filterType == 'has one' && isFiltered || filterType == 'has all' && isFiltered == specificFilter.length) {
           filterObject.addClass('filtered-in');
           filterObject.removeClass('filtered-out');
-          filterObject.appendTo($('.uxu-filter-container'));
+          filterObject.appendTo($('.scientifica-filter-container'));
         } else {
           filterObject.addClass('filtered-out');
           filterObject.removeClass('filtered-in');
-          filterObject.prependTo($('#' + parentId + ' .uxu-tile-container'));
+          filterObject.prependTo($('#' + parentId + ' .scientifica-tile-container'));
         }
       });
       /* prepare filter container */
 
-      $('.uxu-filter-results').css('visibility', 'visible');
-      $('.uxu-filter-results').css('height', 'auto'); // if (filter.categories.length == 0 && filter.tags.length == 0) {
+      $('.scientifica-filter-results').css('visibility', 'visible');
+      $('.scientifica-filter-results').css('height', 'auto'); // if (filter.categories.length == 0 && filter.tags.length == 0) {
 
       if (filter.all.length == 0) {
         smCleanUpFilters();
@@ -113,8 +113,8 @@
       filter.all = [];
       /* Hide filter container */
 
-      $('.uxu-filter-results').css('visibility', 'hidden');
-      $('.uxu-filter-results').css('height', '0');
+      $('.scientifica-filter-results').css('visibility', 'hidden');
+      $('.scientifica-filter-results').css('height', '0');
       /* Remove Tag cloud button classes */
 
       $(filterInput).removeClass('active');
@@ -124,7 +124,7 @@
       $(filterObjects).removeClass('filtered-out');
       $(filterObjects).each(function () {
         var parentId = $(this).data('parent');
-        $(this).prependTo($('#' + parentId + ' .uxu-tile-container'));
+        $(this).prependTo($('#' + parentId + ' .scientifica-tile-container'));
       });
     }
   });

@@ -29,7 +29,7 @@ $text = get_field('post_lead') ?: 'Your post lead here...';
 $small = esc_html( ' sm-small-' . get_field('block_alignment_small') ) ?: '';
 $medium = esc_html( ' sm-medium-' . get_field('block_alignment_medium') ) ?: '';
 $large = esc_html( ' sm-large-' . get_field('block_alignment_large') ) ?: '';
-$classes = 'uxu-post-lead sm-col' . $small . $medium . $large;
+$classes = 'scientifica-post-lead sm-col' . $small . $medium . $large;
 
 ?>
 <div class="<?php echo $classes ?>">

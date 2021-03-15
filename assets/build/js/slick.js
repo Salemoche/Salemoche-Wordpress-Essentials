@@ -17,7 +17,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (function ($) {
-  $(document).on('ready', function () {// $('.uxu-testimonial-slider').slick();
+  $(document).on('ready', function () {// $('.scientifica-testimonial-slider').slick();
   });
 })(jQuery);
 

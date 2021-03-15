@@ -70,4 +70,16 @@ function salemoche_kses_wysiwyg( $string ) {
         'li' => [],
     ] );
 }
+
+function salemoche_get_link($link, $classes = '') {
+
+    if (!isset($link) || empty($link)) return;
+    $url = $link['url'] ?: '';
+    $target = $link['target'] ?: '';
+    $title = $link['title'] ?: '';
+
+    return '<a href="' . $url .  '" target="' . $target .  '" class="'. $classes . '"> '
+                . $title .  
+            '</a>';
+}
 ?>
