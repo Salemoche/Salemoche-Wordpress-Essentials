@@ -1,4 +1,5 @@
 // import scripts
+import './helpers';
 import './filter';
 
 
