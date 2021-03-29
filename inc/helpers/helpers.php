@@ -12,27 +12,66 @@ function salemoche_post_ids_from_acf_page_link ($posts) {
     return $post_ids;
 }
 
-function salemoche_get_categories( $the_post_id ) {
-    $category_ids = wp_get_post_categories( $the_post_id );
-    $categories = [];
+function salemoche_get_categories( $the_post_id = '',  $string = false ) {
 
-    foreach ( $category_ids as $category_id ) {
-        $category = get_category( $category_id );
-        array_push( $categories, $category );
+    if ($the_post_id == '') {
+        $the_post_id = get_the_ID();
+    }
+
+    $category_ids = wp_get_post_categories( $the_post_id );
+    
+    if ($string) {
+        
+        $categories = "";
+        foreach ( $category_ids as $category_id ) {
+            $category = get_category( $category_id );
+            $categories .= $category->slug;
+        }
+
+    } else {
+
+        $categories = [];
+        foreach ( $category_ids as $category_id ) {
+            $category = get_category( $category_id );
+            array_push( $categories, $category );
+        }
+        
     }
 
     return $categories;
 }
 
-function salemoche_get_tags( $the_post_id ) {
+function salemoche_get_tags( $the_post_id = '',  $string = false ) {
+
+    if ($the_post_id == '') {
+        $the_post_id = get_the_ID();
+    }
+
     $tag_ids = wp_get_post_tags( $the_post_id );
-    $tags = [];
 
     foreach ( $tag_ids as $tag_id ) {
         $category = get_category( $tag_id );
         array_push( $tags, $category );
     }
 
+    
+    if ($string) {
+        
+        $tags = "";
+        foreach ( $tag_ids as $tag_id ) {
+            $tag = get_category( $tag_id );
+            $tags .= $tag->slug;
+        }
+
+    } else {
+
+        $tags = [];
+        foreach ( $tag_ids as $tag_id ) {
+            $tag = get_category( $tag_id );
+            array_push( $tags, $tag );
+        }
+        
+    }
     return $tags;
 }
 
