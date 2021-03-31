@@ -203,6 +203,10 @@ $sm-grid: (
     &[class*="-justify-center"], &.justify-center {
         justify-content: center;
     }
+
+    &[class*="-no_gutter"], &.no_gutter {
+        padding: 0;
+    }
 }
 
 

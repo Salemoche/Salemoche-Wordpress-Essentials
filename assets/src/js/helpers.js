@@ -1,3 +1,9 @@
+import DeviceDetector from 'device-detector-js';
+
+const deviceDetector = new DeviceDetector();
+const userAgent = window.navigator.userAgent;
+const smDevice = deviceDetector.parse(userAgent);
+
 const smCssVar = ( name, value ) => {
 
     if(name.substr(0, 2) !== "--") {
