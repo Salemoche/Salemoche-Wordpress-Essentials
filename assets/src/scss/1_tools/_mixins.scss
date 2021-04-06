@@ -105,3 +105,29 @@
 		object-position: cover;
 	}
 }
+
+@mixin sm-after_icon( $content: "→", $offset: #{map_get( $spacing, "regular" )}, $spacing: #{map_get( $spacing, "regular" )}) {
+
+    padding-right: calc( #{$spacing} * 2 + #{$offset} );;
+    position: relative;
+
+	&::after {
+		content: "#{$content}";
+		position: absolute;
+		right: #{$offset};
+        margin-top: 1px;
+	}
+}
+
+@mixin sm-before_icon( $content: "→", $offset: #{map_get( $spacing, "regular" )}, $spacing: #{map_get( $spacing, "regular" )}) {
+
+    padding-right: calc( #{$spacing} * 2 + #{$offset} );;
+    position: relative;
+
+	&::before {
+		content: "#{$content}";
+		position: absolute;
+		right: #{$offset};
+        margin-top: 1px;
+	}
+}

@@ -2,3 +2,9 @@
 	$negative: calc(0px - #{$value});
 	@return $negative
 };
+
+@function color($color: 'current', $shade: 'regular') {
+	$type: map_get($colors, #{$color});
+    $return_color: map_get($type,  #{$shade});
+	@return $return_color;
+}
