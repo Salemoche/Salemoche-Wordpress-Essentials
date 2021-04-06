@@ -49,11 +49,6 @@ function salemoche_get_tags( $the_post_id = '',  $string = false ) {
 
     $tag_ids = wp_get_post_tags( $the_post_id );
 
-    foreach ( $tag_ids as $tag_id ) {
-        $tag = get_category( $tag_id );
-        array_push( $tags, $tag );
-    }
-
     
     if ($string) {
         
