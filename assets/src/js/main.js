@@ -1,6 +1,6 @@
 // import scripts
 import './helpers';
-import './filter';
+// import './filter';
 
 
 // import styles
